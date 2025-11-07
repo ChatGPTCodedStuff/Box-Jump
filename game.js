@@ -36,6 +36,18 @@ function drawRect(obj, color = "black") {
   ctx.fillRect(obj.x, obj.y, obj.width, obj.height);
 }
 
+function resetGame() {
+  player.x = 100;
+  player.y = canvas.height - 150;
+  player.dx = 0;
+  player.dy = 0;
+  player.grounded = false;
+
+  terrain.length = 0;
+  spikes.length = 0;
+  createTerrain();
+}
+
 function update() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -84,8 +96,7 @@ function update() {
         player.x + player.width > s.x &&
         player.y < s.y + s.height &&
         player.y + player.height > s.y) {
-      alert("Game Over!");
-      document.location.reload();
+      resetGame();
     }
   });
 
